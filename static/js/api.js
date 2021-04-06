@@ -1,10 +1,12 @@
 document.getElementById("search_api_btn").addEventListener('click', getName);
-// document.getElementById("get_form").addEventListener('submit', getName);
+document.getElementById("get_form").addEventListener('submit', getName);
 function getName(e){
-    // e.preventDefault();
+    e.preventDefault();
     var xhr = new XMLHttpRequest();
 
-    xhr.open('GET','/api/users?username=user_api', true)
+    var name = document.getElementById("search_name").value;
+
+    xhr.open('GET','/api/users?username=' + name, true);
     xhr.onload = function(){
         console.log(this.responseText)
     }
