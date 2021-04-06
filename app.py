@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, session, g, flash, 
 from datetime import timedelta
 import mysql.connector
 import json
+import requests
+#HEADERS = {'Content-Type': 'text/html; charset=utf-8', }
 mydb = mysql.connector.connect(host='localhost',
                                user='k',
                                password='kpython',
@@ -127,8 +129,8 @@ def api_qr():  # ?username=ply
         return (f'make_api{result}')
 
 
-@app.route('/api/users')
-def make_api():  # ?username=ply
+@app.route('/api/users', methods=['POST', 'GET'])
+def make_api(charset='utf-8'):  # ?username=ply
     # /api/users?username=ply
     try:
         # search = request.form['username']
@@ -153,8 +155,9 @@ def make_api():  # ?username=ply
             return data
         return render_template('member.html',
                                web_info=web_info,
-                               data=data,
-                               user_api=user_api
+                               data=data.encode('utf-8'),
+                               user_api=user_api,
+                               # headers=HEADERS,
                                )
     except:
         # else:

@@ -3,16 +3,10 @@
     <h3> <a href = "/"> 登入系統/首頁 </a></h3>
 {% else %}
     <h3> 恭喜{{g.name}}！成功登入 </h3>
-    <form action="/api/users" method="get">
-        <div>
-            <label for="">JSON查詢</label>
-            <input id="search_api_btn" type="text" name="username">
-        </div>
-        <div>
-            <input type="submit" name="submit" value="查詢JSON">
-        </div>
-    </form>
-
+    {#}
+    <button id="get_user_btn">查詢會員姓名</button>
+    {#}
+    
     <form id="get_form" action="/api/users" method="get">
         <div>
             <label for="">查詢會員姓名</label>
@@ -21,22 +15,36 @@
         <div>
             <input type="submit" name="submit" value="查詢">
         </div>
-        {#}
-        {% if answer % }
-            <h1> {{answer}} </h1 >
-        {% else %}
-            <h1>查無此人</h1>
-        {% endif %}
-        {#}
-        {#}
-        <h1 id="search_api"></h1>
+        <h3 id="show_name"></h3>
+    </form>
+    {#}
+    <form action="/api/users" method="get">
+        <div>
+            <label for="">JSON查詢</label>
+            <input id="search_api_btn" type="text" name="username">
+        </div>
+        <div>
+            <input type="submit" name="submit" value="查詢JSON">
+        </div>
+        <div id="user"></div>
+    </form>
+    {#}
+    {#}
+    <form id="post_form" action="/api/users" method="post">
+        <div>
+            <label for="">post查詢</label>
+            <input type="text" name="username">
+        </div>
         <div>
             <input type="submit" name="submit" value="查詢">
         </div>
-        {#}
-        <script src="../static/js/api.js"></script>
-        
     </form>
+    {#}
+
+    <script src="../static/js/xhr.js"></script>
+    {#}
+    <script src="../static/js/fetch.js"></script>
+    {#}
     <h3>{{answer}}</h3>
     <h3> <a href = "/signout"> 登出系統 </a></h3>
 {% endif %}
