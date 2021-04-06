@@ -3,10 +3,10 @@
     <h3> <a href = "/"> 登入系統/首頁 </a></h3>
 {% else %}
     <h3> 恭喜{{g.name}}！成功登入 </h3>
-    <form action="/member/" method="post">
+    <form id="get_form" action="/api/users" method="get">
         <div>
-            <label for="">查詢帳號</label>
-            <input type="text" name="search">
+            <label  for="">查詢帳號</label>
+            <input id="search_api_btn" type="text" name="username">
         </div>
         <div>
             <input type="submit" name="submit" value="查詢">
@@ -18,11 +18,15 @@
             <h1>查無此人</h1>
         {% endif %}
         {#}
+        {#}
+        <h1 id="search_api"></h1>
+        <div>
+            <input type="submit" name="submit" value="查詢">
+        </div>
+        {#}
+        <script src="../static/js/api.js"></script>
+        
     </form>
     <h3>{{answer}}</h3>
     <h3> <a href = "/signout"> 登出系統 </a></h3>
 {% endif %}
-<h1 id="search_api"></h1>
-{#}
-<script src="../static/js/api.js"></script>
-{#}

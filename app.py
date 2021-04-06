@@ -29,8 +29,8 @@ def before_request():
         g.name = name
         # print(f'g.name{g.name}')
     if 'username' in session:
-        username = session['username']
-        g.username = username
+        user_name = session['username']
+        g.username = user_name
         print(f'g.username:{g.username}')
 
 
@@ -131,6 +131,10 @@ def api_qr():  # ?username=ply
 def make_api():  # ?username=ply
     # /api/users?username=ply
     try:
+        # search = request.form['username']
+        # processed_search = search.upper()
+        # return processed_text
+
         user_api = request.args.get('username', '{"data": null}')
         if user_api:
             cursor.execute(
@@ -138,9 +142,9 @@ def make_api():  # ?username=ply
             result = cursor.fetchone()
             # print(f'api/users{result}')
 
-            username = user_api
+            user_name = user_api
             # session.permanent = True
-            session['username'] = username
+            session['username'] = user_name
             data = (
                 {"data": {'id': result[0], 'name': result[1], 'username': result[2]}})
             print(f'user_api{data}')
@@ -149,7 +153,8 @@ def make_api():  # ?username=ply
             return data
         return render_template('member.html',
                                web_info=web_info,
-                               data=data
+                               data=data,
+                               user_api=user_api
                                )
     except:
         # else:
@@ -159,13 +164,13 @@ def make_api():  # ?username=ply
 
 @ app.route('/member/', methods=['POST', 'GET'])
 def member():
-    # if request.method == 'POST' and 'search' in request.form:
-    #     search = request.form.get('search')
+    # if request.method == 'POST' and 'username' in request.form:
+    #     username = request.form.get('username')
     #     cursor.execute(
-    #         'SELECT name FROM user WHERE username = %s', (search,))
+    #         'SELECT name FROM user WHERE username = %s', (username,))
     #     answer = cursor.fetchone()
     #     print(f"member{answer}")
-    # print(f"http://127.0.0.1:3000/api/users?username={search}")
+    # print(f"http://127.0.0.1:3000/api/users?username={username}")
     return render_template('member.html', web_info=web_info)
 
 
