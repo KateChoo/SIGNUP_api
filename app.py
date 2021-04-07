@@ -130,13 +130,9 @@ def api_qr():  # ?username=ply
 
 
 @app.route('/api/users', methods=['POST', 'GET'])
-def make_api(charset='utf-8'):  # ?username=ply
+def make_api():  # ?username=ply  #charset='utf-8'
     # /api/users?username=ply
     try:
-        # search = request.form['username']
-        # processed_search = search.upper()
-        # return processed_text
-
         user_api = request.args.get('username', '{"data": null}')
         if user_api:
             cursor.execute(
@@ -151,7 +147,6 @@ def make_api(charset='utf-8'):  # ?username=ply
                 {"data": {'id': result[0], 'name': result[1], 'username': result[2]}})
             print(f'user_api{data}')
             print(f'http://127.0.0.1:3000/api/users?username={user_api}')
-            # print(Flask.port)
             return data
         return render_template('member.html',
                                web_info=web_info,
@@ -161,8 +156,8 @@ def make_api(charset='utf-8'):  # ?username=ply
                                )
     except:
         # else:
-
-        return ('{"data": null}')
+        data = '{\n"data": null\n}'
+        return (data)
 
 
 @ app.route('/member/', methods=['POST', 'GET'])
