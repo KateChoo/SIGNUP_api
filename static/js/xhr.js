@@ -16,22 +16,11 @@ function getName(e){
             //output = this.responseText;
             
         }
-        // if (output){
             document.getElementById("show_name").textContent = (`${output} (${search_name})`);
-            // let span = document.createElement("span")
-            // span.setAttribute("id", "show_username");
-            // document.getElementById("show_name").appendChild(span);
-            // document.getElementById("show_name").textContent = (`${output}`);
-            // console.log(`name: ${name}`);
-            // console.log(`search_name: ${document.getElementById("search_name").value}`)
-            // console.log(`show_username: ${document.getElementById("show_username")}`)
-            // document.getElementsByTagName("span")[0].textContent = (`(${search_name})`);
-        // }else if (user.data === null){
-        //     document.getElementById("show_name").textContent = (`查無此人`);
-        // }
+
     }
     xhr.send();
-    document.getElementById("show_name").textContent.value = "";
+    //document.getElementById("show_name").textContent.value = "";
 }
 
 // function postName(e){
@@ -91,3 +80,18 @@ function getName(e){
 //     // .catch(error =>{
 //     //     console.log(error);
 //     // })
+
+
+// if (output){
+    // document.getElementById("show_name").textContent = (`${output} (${search_name})`);
+    // let span = document.createElement("span")
+    // span.setAttribute("id", "show_username");
+    // document.getElementById("show_name").appendChild(span);
+    // document.getElementById("show_name").textContent = (`${output}`);
+    // console.log(`name: ${name}`);
+    // console.log(`search_name: ${document.getElementById("search_name").value}`)
+    // console.log(`show_username: ${document.getElementById("show_username")}`)
+    // document.getElementsByTagName("span")[0].textContent = (`(${search_name})`);
+// }else if (user.data === null){
+//     document.getElementById("show_name").textContent = (`查無此人`);
+// }
