@@ -148,12 +148,12 @@ def make_api():  # ?username=ply  #charset='utf-8'
             print(f'user_api{data}')
             print(f'http://127.0.0.1:3000/api/users?username={user_api}')
             return data
-        return render_template('member.html',
-                               web_info=web_info,
-                               data=data.encode('utf-8'),
-                               user_api=user_api,
-                               # headers=HEADERS,
-                               )
+        # return render_template('member.html',
+        #                        web_info=web_info,
+        #                        data=data.encode('utf-8'),
+        #                        user_api=user_api,
+        #                        # headers=HEADERS,
+        #                        )
     except:
         # else:
         data = '{\n"data": null\n}'
