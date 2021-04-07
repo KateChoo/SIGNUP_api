@@ -12,15 +12,15 @@ fetch(url.search)
         .then(data => {
             console.log(data.data);
             console.log('hi');
-            var search_name = document.getElementById("search_name").value;
-            document.getElementById("user").innerHTML = 'get_form';
-            document.getElementById("show_name").innerHTML = search_name;
+            // var search_name = document.getElementById("search_name").value;
+            // document.getElementById("user").innerHTML = 'get_form';
+            // document.getElementById("show_name").innerHTML = search_name;
             // console.log(data.data.name);
             // console.log('hello')
             // document
             //     .getElementById("search_api")
             //     .textContent = (data.data.name);
         })
-        // .catch(error =>{
-        //     console.log(error);
-        // })
+        .catch(error =>{
+            console.log(error);
+        })

@@ -1,4 +1,7 @@
+//document.getElementById("search_api_btn").addEventListener('click', getName);  //JSON
 document.getElementById("get_form").addEventListener('submit', getName);
+// document.getElementById("post_form").addEventListener('submit', postName);    //問題還沒解決
+// document.getElementById("get_user_btn").addEventListener('click', loadUser);
 
 function getName(e){
     e.preventDefault();

@@ -1,7 +1,11 @@
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
 <h1>{{web_info.member_t}}</h1>
 {% if g.name == '您' %}
     <h3> <a href = "/"> 登入系統/首頁 </a></h3>
 {% else %}
+    <h3> <a href = "/"> 回首頁 </a></h3>
     <h3> 恭喜{{g.name}}！成功登入 </h3>
     {#}
     <button id="get_user_btn">查詢會員姓名</button>
@@ -40,8 +44,11 @@
         </div>
     </form>
     {#}
-
+    
+    <script src="../static/js/axios.js"></script>
+    
     <script src="../static/js/xhr.js"></script>
+    
     {#}
     <script src="../static/js/fetch.js"></script>
     {#}
