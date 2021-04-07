@@ -156,8 +156,7 @@ def make_api():  # ?username=ply  #charset='utf-8'
         #                        )
     except:
         # else:
-        data = '{\n"data": null\n}'
-        return (data)
+        return '{"data": null}'
 
 
 @ app.route('/member/', methods=['POST', 'GET'])
