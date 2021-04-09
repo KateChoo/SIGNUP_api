@@ -153,6 +153,11 @@ def make_api():  # ?username=ply  #charset='utf-8'
         return '{"data": null}'
 
 
+@app.route('/api/user', methods=['POST', 'GET'])
+def change_name_api():
+    pass
+
+
 @ app.route('/member/', methods=['POST', 'GET'])
 def member():
     # if request.method == 'POST' and 'username' in request.form:
