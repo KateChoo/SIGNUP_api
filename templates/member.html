@@ -21,6 +21,16 @@
         </div>
         <h3 id="show_name"></h3>
     </form>
+    <form id="change_form" action="/api/user" method="post">
+        <div>
+            <label for="">更改我的姓名</label>
+            <input id="change_name" type="text" name="new_name">
+        </div>
+        <div>
+            <input type="submit" name="submit" value="更新">
+        </div>
+        <h3 id="show_new_name"></h3>
+    </form>
     {#}
     <form action="/api/users" method="get">
         <div>
@@ -44,14 +54,19 @@
         </div>
     </form>
     {#}
-    
+
+    {#}
     <script src="../static/js/axios.js"></script>
     {#}
+
+    
     <script src="../static/js/xhr.js"></script>
-    {#}
+    
+
     {#}
     <script src="../static/js/fetch.js"></script>
     {#}
+
     <h3>{{answer}}</h3>
     <h3> <a href = "/signout"> 登出系統 </a></h3>
 {% endif %}

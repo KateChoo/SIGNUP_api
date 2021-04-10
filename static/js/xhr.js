@@ -1,5 +1,19 @@
+var xhr = new XMLHttpRequest();
+console.log(xhr)
 document.getElementById("get_form").addEventListener('submit', getName);
-
+document.getElementById("change_form").addEventListener('submit', changeName);
+function changeName(e){
+    e.preventDefault();
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET','/api/user', true);
+    xhr.onload = function(){
+        if(this.status == 200){
+            console.log(this.responseText)
+            document.getElementById("show_new_name").textContent = (this.responseText);
+        }
+    }
+    xhr.send()
+}
 function getName(e){
     e.preventDefault();
     var xhr = new XMLHttpRequest();
@@ -7,20 +21,20 @@ function getName(e){
     xhr.open('GET','/api/users?username=' + search_name, true);
     xhr.onload = function(){
         if(this.status == 200){
-            console.log(`xhr this.responseText: ${this.responseText}`)
+            //console.log(`xhr (this.responseText): ${this.responseText}`)
             var user = JSON.parse(this.responseText)
-            var output = '';
-            console.log(`user.data/xhr JSON.parse(this.responseText): ${user.data}`) //[object Object]
-            output = JSON.stringify(user.data.name).replace('"', "").replace('"', "");
-            console.log(`xhr name (output): ${output}`)  
-            //output = this.responseText;
-            
+            console.log(`user.data (xhr JSON.parse(this.responseText)): ${user.data}`) //[object Object]
+            if(user.data){
+                output = JSON.stringify(user.data.name).replace('"', "").replace('"', "");
+                console.log(`xhr name (output): ${output}`)  
+                document.getElementById("show_name").textContent = (`${output} (${search_name})`);
+            }else{
+                document.getElementById("show_name").textContent = `查無此人`
+            }
+            search_name = document.getElementById("search_name").value = ''
         }
-            document.getElementById("show_name").textContent = (`${output} (${search_name})`);
-
     }
     xhr.send();
-    //document.getElementById("show_name").textContent.value = "";
 }
 
 // function postName(e){

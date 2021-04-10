@@ -3,7 +3,7 @@ from datetime import timedelta
 import mysql.connector
 import json
 import requests
-#HEADERS = {'Content-Type': 'text/html; charset=utf-8', }
+# HEADERS = {'Content-Type': 'text/html; charset=utf-8', }
 mydb = mysql.connector.connect(host='localhost',
                                user='k',
                                password='kpython',
@@ -33,7 +33,7 @@ def before_request():
     if 'username' in session:
         user_name = session['username']
         g.username = user_name
-        print(f'g.username:{g.username}')
+        print(f'g.username   global:{g.username}')
 
 
 @app.route('/')
@@ -137,6 +137,8 @@ def make_api():  # ?username=ply  #charset='utf-8'
         if user_api:
             cursor.execute(
                 'SELECT * FROM user where username = %s', (user_api,))
+            print(
+                f" user/api : {'SELECT * FROM user where username = %s', (user_api,)}")
             result = cursor.fetchone()
             # print(f'api/users{result}')
 
@@ -145,8 +147,8 @@ def make_api():  # ?username=ply  #charset='utf-8'
             session['username'] = user_name
             data = (
                 {"data": {'id': result[0], 'name': result[1], 'username': result[2]}})
-            print(f'user_api{data}')
-            print(f'http://127.0.0.1:3000/api/users?username={user_api}')
+            # print(f'user_api{data}')
+            # print(f'http://127.0.0.1:3000/api/users?username={user_api}')
             return data
     except:
         # else:
@@ -155,7 +157,23 @@ def make_api():  # ?username=ply  #charset='utf-8'
 
 @app.route('/api/user', methods=['POST', 'GET'])
 def change_name_api():
-    pass
+    try:
+        print(f'g.username   local:{g.username}')
+        change_name_api = request.args.get(
+            'new_name', 'change')  # {"data": null}
+        # change_sql = 'UPDATE user SET name = %s WHERE username = %s', (g.username,)
+        #search_sql = 'SELECT name FROM user where username = %s', (g.username,)
+
+        cursor.execute(
+            'UPDATE user SET name = %s WHERE username = %s', (change_name_api, g.username))
+        print(
+            f"change:  {'UPDATE user SET name= % s WHERE username = % s', (change_name_api, g.username)}")
+        result = cursor.fetchone()
+        print(f'change:  {change_name_api}')
+        print(f'change result:  {result}')
+        return '{"ok": true}'
+    except:
+        return '{"error": true}'
 
 
 @ app.route('/member/', methods=['POST', 'GET'])
